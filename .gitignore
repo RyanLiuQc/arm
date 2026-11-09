@@ -1,0 +1,32 @@
+# macOS
+.DS_Store
+._*
+
+# ROS 2 / Colcon build artifacts
+ros2_ws/build/
+ros2_ws/install/
+ros2_ws/log/
+build/
+install/
+log/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.venv/
+venv/
+env/
+*.egg-info/
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local / temporary
+random/
+.env
+*.log
