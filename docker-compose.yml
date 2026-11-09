@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  arm_sim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: arm-sim:latest
+    container_name: arm_sim
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
+
+    # Mount the local workspace so code changes on macOS are instantly reflected
+    volumes:
+      - ./ros2_ws:/ros2_ws
+
+    # Port 8080: Three.js 3D web visualizer and WebSocket bridge
+    ports:
+      - "8080:8080"
+
+    environment:
+      # Real-time Python logging without buffer delays
+      - PYTHONUNBUFFERED=1
+      # Isolated ROS 2 domain ID (0-101) to prevent accidental DDS network crosstalk
+      - ROS_DOMAIN_ID=0
+
+    # Keep container alive in background so you can attach or run commands at will
+    command: sleep infinity
